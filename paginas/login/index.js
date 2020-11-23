@@ -36,9 +36,11 @@ const Login = () => {
 
   function handleSignIn() {
 
-    try {
+    try
+    {
       signIn(email, password)
-    } catch (err) {
+    }catch (err)
+    {
       console.warn(err);
     }
 
@@ -58,6 +60,17 @@ const Login = () => {
     }
   }
 
+   function ForgotPassword()
+  {
+    try {
+      ForgotPassword(email)
+    }catch (err) 
+    {
+      console.warn(err);
+    }
+
+  }
+  
   return (
     <Container>
 
