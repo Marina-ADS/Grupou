@@ -147,6 +147,6 @@ const Login = () => {
       </CaixaLogin>
     </Container>
   )
-}
+} 
 
 export default Login
