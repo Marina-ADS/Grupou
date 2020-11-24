@@ -5,21 +5,22 @@ import { UsuarioContext } from '../../contexts/user';
 
 import {
   Container,
-  Texto,
   ContainerButtons,
   Button,
   ButtonText,
   Input,
   ContainerMessages,
-  Message
-
+  ContainerMessage,
+  Message,
+  HoraMensagem
 } from './styles';
 
 import firebase from 'firebase';
 import 'firebase/firestore';
 
-const Chat = () => {
+const Chat = ({ route }) => {
 
+  const { group } = route.params;
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
@@ -34,14 +35,13 @@ const Chat = () => {
         ...doc.data()
       }
     })
-    // console.log(data)
     setMessages(data)
   }
 
 
   useEffect(() => {
     const listener = firebase.firestore()
-      .collection('mensagens').onSnapshot(ListenUpdateMessages)
+      .collection(group).onSnapshot(ListenUpdateMessages)
 
     return () => listener()
   }, [])
@@ -55,9 +55,11 @@ const Chat = () => {
     }
 
     try {
-      firebase.firestore().collection('mensagens').add({
-        texto: newMessage,
-        lida: false
+      let messageDate = new Date();
+      firebase.firestore().collection(group).add({
+        text: newMessage,
+        user: user.email,
+        messageDate: messageDate
       })
       setNewMessage("");
     } catch (err) {
@@ -69,19 +71,41 @@ const Chat = () => {
     <Container>
 
 
-      <ContainerMessages>
-        {messages.map(message => (
-          <Message key={message.id}>{message.texto}</Message>
-        ))}
+      <ContainerMessages 
+      ref={ref => {this.ContainerMessages = ref}}
+      onContentSizeChange={() => this.ContainerMessages.scrollToEnd({animated: true})}
+      >
+        {
+        
+        messages.sort((a, b) => a.messageDate.toDate() > b.messageDate.toDate()).map(
+          (message) => 
+          
+          <ContainerMessage key={message.id}>
+          
+            <Message messageUser={message.user === user.email}>
+              {message.text}
+            </Message>
+
+            <HoraMensagem messageUser={message.user === user.email}>
+              {
+                message.messageDate.toDate().getHours().toString() +
+                ':' + 
+                message.messageDate.toDate().getMinutes().toString()
+              }
+            </HoraMensagem>
+          
+          </ContainerMessage>
+
+        )  
+
+        }
 
       </ContainerMessages>
-
-
-      <Texto>{user.email}</Texto>
+        
+      
       <ContainerButtons>
-
-        <Input
-          placeholder="Digite sua mensagem"
+        <Input 
+          placeholder="Digite uma mensagem"
           onChangeText={text => setNewMessage(text)}
           value={newMessage}
         />
@@ -89,9 +113,10 @@ const Chat = () => {
         <Button invert={true}
           onPress={() => { handleAddMessages() }}
         >
-          <ButtonText invert={true}>Enviar</ButtonText>
+          <ButtonText>Enviar</ButtonText>
         </Button>
       </ContainerButtons>
+
     </Container>
   )
 }
