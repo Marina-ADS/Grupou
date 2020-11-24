@@ -86,4 +86,4 @@ export const Input = styled.TextInput`
   padding: 0 20px;
   background-color:#ffffff;
   margin-right:10px;
-`
+` 
