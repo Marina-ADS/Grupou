@@ -120,5 +120,4 @@ const Chat = ({ route }) => {
     </Container>
   )
 }
-
 export default Chat
