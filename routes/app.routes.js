@@ -3,9 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import Groups from '../pages/Groups';
-import Chat from '../pages/Chat';
-import Settings from '../pages/Settings';
+import Groups from '../pages/groups';
+import Chat from '../pages/chat';
+import Settings from '../pages/settings';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -16,11 +16,30 @@ function GroupScreen() {
       <Stack.Screen
         name="Groups"
         component={Groups}
+        options={{
+          title:'Grupos',
+          headerStyle: {
+            backgroundColor: '#ae1b73',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }
+        }}
       />
       <Stack.Screen
         name="Chat"
         component={Chat}
-        initialParams={{ group: 'grupo de desenvolvimento' }}
+        initialParams={{ group: 'group_development' }}
+        options={{
+          headerStyle: {
+            backgroundColor: '#ae1b73',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }
+        }}
       /> 
     </Stack.Navigator>
   );
@@ -32,7 +51,7 @@ const AppRoutes = () => {
       initialRouteName="Groups"
       tabBarOptions={
         {
-          activeTintColor: 'tomato',
+          activeTintColor: '#ae1b73',
           inactiveTintColor: '#ccc'
         }
       }
@@ -48,7 +67,8 @@ const AppRoutes = () => {
                 color={color}
                 size={32}
               />
-            )
+            ),
+            title: 'Grupos'
           }
         }
       />
