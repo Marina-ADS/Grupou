@@ -9,7 +9,7 @@ import {
   ContainerButtons,
   Button,
   ButtonText
-} from './styles';
+} from './style';
 
 
 
