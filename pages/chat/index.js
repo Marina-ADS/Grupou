@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text } from 'react-native';
+import moment from 'moment';
 
 import { UsuarioContext } from '../../contexts/user';
 
@@ -13,7 +14,7 @@ import {
   ContainerMessage,
   Message,
   HoraMensagem
-} from './styles';
+} from './style';
 
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -56,6 +57,7 @@ const Chat = ({ route }) => {
 
     try {
       let messageDate = new Date();
+      messageDate.setHours(messageDate.getHours() - 3);
       firebase.firestore().collection(group).add({
         text: newMessage,
         user: user.email,
@@ -82,15 +84,13 @@ const Chat = ({ route }) => {
           
           <ContainerMessage key={message.id}>
           
-            <Message messageUser={message.user === user.email}>
+            <Message isUser={message.user === user.email}>
               {message.text}
             </Message>
 
-            <HoraMensagem messageUser={message.user === user.email}>
+            <HoraMensagem isUser={message.user === user.email}>
               {
-                message.messageDate.toDate().getHours().toString() +
-                ':' + 
-                message.messageDate.toDate().getMinutes().toString()
+                moment(message.messageDate.toDate()).format("DD/MM/YYYY HH:mm:ss")
               }
             </HoraMensagem>
           
