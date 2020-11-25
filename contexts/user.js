@@ -52,8 +52,18 @@ const UsuarioProvider = ({ children }) => {
       })
   }
 
+  const resetPassword = (email) => {
+    firebase.auth().sendPasswordResetEmail(email)
+      .then(resp => {
+        console.warn('Foi enviado um email para a recuperação da sua senha.')
+      })
+      .catch(err => {
+        console.warn(err)
+      })
+  }
+
   return (
-    <UsuarioContext.Provider value={{ user, signIn, signOut, signUp }}>
+    <UsuarioContext.Provider value={{ user, signIn, signOut, signUp, resetPassword }}>
       {children}
     </UsuarioContext.Provider>
   )
