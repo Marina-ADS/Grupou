@@ -9,48 +9,6 @@ export const Container = styled.View`
   align-items:center;
 `;
 
-
-export const Texto = styled.Text`
- color:#fff;
- font-size:20px;
- text-align:center;
-
-`
-
-export const ContainerMessages = styled.ScrollView`
-  width:100%;
-  flex:1;
-`;
-
-export const ContainerMessage = styled.View`
-  width:100%;
-  margin-bottom: 10px;
-`;
-
-export const HoraMensagem = styled.Text`
- color:#b2b8d0;
- font-size:14px;
- text-align:right;
- padding-top:5px;
- padding-bottom:5px;
- margin-right: ${props => props.messageUser ? "5px" : "65px"};
- font-weight:bold;
-`
-
-export const Message = styled.Text`
- color:#fff;
- font-size:14px;
- border-radius: 10px;
- padding-top:20px;
- padding-bottom:20px;
- padding-left: ${props => props.messageUser ? "20px" : "20px"};
- padding-right: ${props => props.messageUser ? "15px" : "60px"};
- margin-left: ${props => props.messageUser ? "60px" : "0px"};
- margin-right: ${props => props.messageUser ? "0px" : "60px"};
- margin-top:5px;
- background-color: ${props => props.messageUser ? "#259cd7" : "#b2b8d0"};
-`
-
 export const ContainerButtons = styled.View`
   flex-direction:row;
   background-color:#f0f1f5;
@@ -87,3 +45,38 @@ export const Input = styled.TextInput`
   background-color:#ffffff;
   margin-right:10px;
 ` 
+
+export const ContainerMessages = styled.ScrollView`
+  width:100%;
+  flex:1;
+`;
+
+export const ContainerMessage = styled.View`
+  width:100%;
+  margin-bottom: 10px;
+`;
+
+export const Message = styled.Text`
+ color:#fff;
+ font-size:14px;
+ border-radius: 10px;
+ padding-top:20px;
+ padding-bottom:20px;
+ padding-left: ${props => props.isUser ? "20px" : "20px"};
+ padding-right: ${props => props.isUser ? "15px" : "60px"};
+ margin-left: ${props => props.isUser ? "60px" : "0px"};
+ margin-right: ${props => props.isUser ? "0px" : "60px"};
+ margin-top:5px;
+ background-color: ${props => props.isUser ? "#ae1b73" : "#e0389d"};
+`
+
+export const HoraMensagem = styled.Text`
+ color:#b2b8d0;
+ font-size:14px;
+ text-align: ${props => props.isUser ? "right" : "left"};
+ padding-top:5px;
+ padding-bottom:5px;
+ margin-right: 10px;
+ margin-left: 10px;
+ font-weight:bold;
+`
