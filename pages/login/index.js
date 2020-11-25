@@ -19,7 +19,7 @@ import {
   TextoChamada,
   TextoGrupou
 
-} from './styles';
+} from './style';
 
 import logoImg from '../../assets/logo.png';
 
