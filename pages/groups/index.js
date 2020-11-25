@@ -6,9 +6,9 @@ import {
   Button,
   ButtonText,
   ContainerMessages
-} from './styles';
+} from './style';
 
-const goToGroup = (groupName,navigation) => {
+const goToGroupChat = (groupName,navigation) => {
   navigation.navigate("Chat",{group: groupName})
 }
 
@@ -19,17 +19,43 @@ const Groups = ( { navigation } ) => {
       
       <ContainerMessages>
         
-        <Button onPress={() => { goToGroup('group_development',navigation) }}>
+        <Button onPress={() => { goToGroupChat('group_development',navigation) }}>
           <ButtonText  >
             Desenvolvimento
           </ButtonText>
         </Button>
         
-        <Button onPress={() => { goToGroup('group_webdesign',navigation) }}>
+        <Button onPress={() => { goToGroupChat('group_webdesign',navigation) }}>
           <ButtonText>
             WebDesign
           </ButtonText>
         </Button>
+
+        <Button onPress={() => { goToGroupChat('group_documentation',navigation) }}>
+          <ButtonText>
+            Documentação
+          </ButtonText>
+        </Button>
+
+        <Button onPress={() => { goToGroupChat('group_database',navigation) }}>
+          <ButtonText>
+            Banco de Dados
+          </ButtonText>
+        </Button>
+
+        <Button onPress={() => { goToGroupChat('group_support',navigation) }}>
+          <ButtonText>
+            Suporte
+          </ButtonText>
+        </Button>
+
+        <Button onPress={() => { goToGroupChat('group_cybersecurity',navigation) }}>
+          <ButtonText>
+            Segurança Cibernética
+          </ButtonText>
+        </Button>
+
+
 
       </ContainerMessages>
 
